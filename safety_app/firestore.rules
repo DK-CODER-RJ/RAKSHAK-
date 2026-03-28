@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    // Global incidents collection (if still used)
+    match /incidents/{incidentId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
+    }
+    
+    // User profile and personal subcollections
+    match /users/{userId} {
+      // Users can only read/write their own document
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Nested contacts collection
+      match /contacts/{contactId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+      
+      // Nested incidents collection
+      match /incidents/{incidentId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>SafeGuard AI — Personal Safety App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A0A0F;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .logo-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #FF2D55, #FF6B35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #FF2D55, #FF6B35);
+      border: none;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 45, 85, 0.1) 0%, transparent 70%);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255, 45, 85, 0.12);
+      border: 1px solid rgba(255, 45, 85, 0.25);
+      color: #FF2D55;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: #FF2D55
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1rem;
+      max-width: 440px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero-btn {
+      background: linear-gradient(135deg, #FF2D55, #FF6B35);
+      border: none;
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 30px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 32px rgba(255, 45, 85, 0.3);
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255, 45, 85, 0.45)
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 24px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform .3s, border-color .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 45, 85, 0.3)
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .icon-red {
+      background: rgba(255, 45, 85, 0.15)
+    }
+
+    .icon-blue {
+      background: rgba(0, 122, 255, 0.15)
+    }
+
+    .card-header h3 {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.3px
+    }
+
+    .card-header p {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 3px
+    }
+
+    .card-body {
+      padding: 22px
+    }
+
+    /* SOS Button */
+    .sos-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 0;
+      position: relative;
+    }
+
+    .pulse {
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 45, 85, 0.3);
+      animation: pulse 2s ease-out infinite;
+    }
+
+    .pulse:nth-child(2) {
+      animation-delay: .6s
+    }
+
+    .pulse:nth-child(3) {
+      animation-delay: 1.2s
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(.8);
+        opacity: .8
+      }
+
+      100% {
+        transform: scale(1.7);
+        opacity: 0
+      }
+    }
+
+    .sos-btn {
+      position: relative;
+      z-index: 2;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #FF4D6A, #CC001F);
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 10px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 30px rgba(255, 45, 85, 0.4);
+      transition: transform .15s;
+    }
+
+    .sos-btn:active {
+      transform: scale(.92)
+    }
+
+    .sos-btn .icon {
+      font-size: 28px;
+      margin-bottom: 4px
+    }
+
+    /* Chips row */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .chip .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    .dot-green {
+      background: #30D158
+    }
+
+    .dot-blue {
+      background: #007AFF
+    }
+
+    .dot-red {
+      background: #FF2D55
+    }
+
+    .dot-yellow {
+      background: #FFD60A
+    }
+
+    /* Camera view */
+    .cam-view {
+      background: #080810;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px;
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+      background-image: linear-gradient(rgba(255, 255, 255, .02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .02) 1px, transparent 1px);
+      background-size: 24px 24px;
+      margin-bottom: 14px;
+    }
+
+    .cam-focus {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+    }
+
+    .cf::before,
+    .cf::after,
+    .cf2,
+    .cf3 {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-color: rgba(255, 255, 255, 0.6);
+      border-style: solid;
+    }
+
+    .cf::before {
+      top: 0;
+      left: 0;
+      border-width: 2px 0 0 2px
+    }
+
+    .cf::after {
+      top: 0;
+      right: 0;
+      border-width: 2px 2px 0 0
+    }
+
+    .cf2 {
+      bottom: 0;
+      left: 0;
+      border-width: 0 0 2px 2px
+    }
+
+    .cf3 {
+      bottom: 0;
+      right: 0;
+      border-width: 0 2px 2px 0
+    }
+
+    .rec-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #FF2D55;
+      border-radius: 6px;
+      padding: 3px 9px;
+      font-size: 9px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      animation: blink 1s step-start infinite;
+    }
+
+    .rec-dot {
+      width: 5px;
+      height: 5px;
+      background: #fff;
+      border-radius: 50%
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: .2
+      }
+    }
+
+    .hash-tag {
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      font-size: 8px;
+      color: rgba(255, 255, 255, .3);
+      font-family: monospace;
+    }
+
+    .wi-row {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .wi-stop {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #007AFF, #BF5AF2);
+      border: none;
+      cursor: pointer;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wi-info {
+      flex: 1
+    }
+
+    .wi-info strong {
+      font-size: 12px;
+      display: block
+    }
+
+    .wi-info span {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.4)
+    }
+
+    .anon {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 6px 10px;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      background: #1C1C1E;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform .45s cubic-bezier(.34, 1.56, .64, 1);
+      z-index: 999;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0)
+    }
+
+    footer {
+      text-align: center;
+      padding: 36px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 12px;
+    }
+
+    footer strong {
+      color: #FF2D55
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">
+      <div class="logo-icon">🛡</div>
+      SafeGuard AI
+    </div>
+    <button class="nav-btn" onclick="triggerSOS()">🆘 Demo SOS</button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">🔴 AI-Powered &nbsp;·&nbsp; Offline-First &nbsp;·&nbsp; AES-256</div>
+    <h1>Your Personal<br /><span>Safety Shield</span></h1>
+    <p>Voice-activated emergency alerts that work even without internet. Say "Help" and we handle the rest.</p>
+    <button class="hero-btn" onclick="triggerSOS()">🆘 Trigger Demo SOS</button>
+  </div>
+
+  <!-- MODE CARDS -->
+  <div class="cards">
+
+    <!-- Emergency Mode -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-red">🆘</div>
+        <div>
+          <h3>Emergency Mode</h3>
+          <p>Say "Help" · "Bachao" · "Emergency" — or tap below</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sos-center">
+          <div class="pulse"></div>
+          <div class="pulse"></div>
+          <div class="pulse"></div>
+          <button class="sos-btn" onclick="triggerSOS()">
+            <div class="icon">🆘</div>
+            TAP SOS
+          </button>
+        </div>
+        <div class="chips">
+          <div class="chip">
+            <div class="dot dot-green"></div>GPS Active
+          </div>
+          <div class="chip">
+            <div class="dot dot-blue"></div>Police: 1.2 km
+          </div>
+          <div class="chip" id="sms-chip">
+            <div class="dot dot-red"></div>SMS Ready
+          </div>
+          <div class="chip">
+            <div class="dot dot-yellow"></div>Auto-call: 30s
+          </div>
+          <div class="chip">👥 3 Contacts saved</div>
+          <div class="chip">📴 Offline capable</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Witness Mode -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-blue">👁️</div>
+        <div>
+          <h3>Witness Mode</h3>
+          <p>Say "Crime Report" — discreet encrypted recording</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="cam-view">
+          <div class="cam-focus cf">
+            <div class="cf2"></div>
+            <div class="cf3"></div>
+          </div>
+          <div class="rec-tag">
+            <div class="rec-dot"></div>REC 00:23
+          </div>
+          <div class="hash-tag">SHA-256: a3f8c2…</div>
+        </div>
+        <div class="wi-row">
+          <button class="wi-stop">⏹</button>
+          <div class="wi-info">
+            <strong>📍 Connaught Place, Delhi</strong>
+            <span>AES-256 Encrypted · 20 Feb 2026</span>
+          </div>
+          <div class="anon">🕵️ Anon</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>SafeGuard AI</strong> — Flutter + Firebase · AES-256 Encrypted · India 🇮🇳</p>
+    <p style="margin-top:6px">© 2026 All rights reserved</p>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">🚨 SOS Sent! 3 contacts alerted · Police located 1.2km away</div>
+
+  <script>
+    function triggerSOS() {
+      const chip = document.getElementById('sms-chip');
+      chip.innerHTML = '<div class="dot" style="background:#FFD60A;width:6px;height:6px;border-radius:50%"></div>Sending...';
+      setTimeout(() => {
+        chip.innerHTML = '<div class="dot" style="background:#30D158;width:6px;height:6px;border-radius:50%"></div>✓ 3 Sent!';
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 4000);
+      }, 1200);
+      setTimeout(() => {
+        chip.innerHTML = '<div class="dot" style="background:#FF2D55;width:6px;height:6px;border-radius:50%"></div>SMS Ready';
+      }, 6000);
+    }
+  </script>
+</body>
+
+</html>
