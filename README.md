@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🛡️ RAKSHAK — Personal Safety & Emergency Response App
 
 > **An advanced, high-performance personal safety application that transforms any smartphone into a 24/7 personal guardian.**
@@ -405,3 +406,7 @@ This project is developed for educational and personal safety purposes.
 ---
 
 **Version**: 1.0.0 | **Status**: Production Ready | **Last Updated**: May 2026
+=======
+# RAKSHAK-
+Human Safety Emergency App
+>>>>>>> 7dac2c665616ca88e99e1c2c33af403253fc2c1d
