@@ -331,7 +331,7 @@ flutter run -d <device_id>
 | `feature/frontend-state` | Developer B | Navigation & State Management |
 | `feature/backend-api` | Developer C | API Endpoints & Business Logic |
 | `feature/backend-db` | Developer D | Database & Infrastructure |
-| `api integrations`  | Developer | All Feature Integrations |
+| `api integrations`  | Developer E | All Feature Integrations |
 
 ### Git Workflow
 
