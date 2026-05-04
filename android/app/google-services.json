@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "788735896694",
+    "project_id": "rakshak-5",
+    "storage_bucket": "rakshak-5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788735896694:android:9fa20df519e63ed2448357",
+        "android_client_info": {
+          "package_name": "com.rakshak.rakshak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788735896694-7nc37u3shv5g99klfsef2m5jbub974kd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rakshak.rakshak",
+            "certificate_hash": "858fda6234ea1c908d1aed824acf8e15dd2f3102"
+          }
+        },
+        {
+          "client_id": "788735896694-ocrb1lnmuc0qh4mqlbd68pbq92jpsjp8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsag2_ts8jPYzFSQHQzz-l0u69zmCr_0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788735896694-ocrb1lnmuc0qh4mqlbd68pbq92jpsjp8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "788735896694-iipmhpjqfabjjo04mofi7v1hg3oal6b0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rakshak.rakshak"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
